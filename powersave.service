@@ -1,0 +1,13 @@
+[Unit]
+Description=Power Saving Tweaks
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/bulkw auto      /sys/bus/pci/devices/*/power/control
+ExecStart=/usr/bin/bulkw 1         /sys/bus/usb/devices/*/power/autosuspend
+ExecStart=/usr/bin/bulkw auto      /sys/bus/usb/devices/*/power/level
+ExecStart=/usr/bin/bulkw min_power /sys/class/scsi_host/host0/link_power_management_policy
+
+[Install]
+WantedBy=multi-user.target
