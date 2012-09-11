@@ -10,9 +10,8 @@ license=('GPL')
 depends=('systemd')
 makedepends=('git')
 
-# _gitroot="git://github.com/vodik/envoy.git"
-_gitroot="/home/simon/code/powersave"
-_gitname="envoy"
+_gitroot="$PWD"
+_gitname="powersave"
 
 build() {
   msg "Connecting to GIT server...."
