@@ -3,7 +3,9 @@
 A systemd service file and utilizes to set certain powersaving features
 on boot (screw consuming more power just because I'm on AC).
 
-Basically:
+### powersave.service
+
+Basically the following script:
 
 ```
 bulkw auto      /sys/bus/pci/devices/*/power/control
@@ -14,6 +16,16 @@ bulkw min_power /sys/class/scsi_host/host0/link_power_management_policy
 ethtool -s eth0 wol d
 iw dev wlan0 set power_save off
 ```
+
+### modprobe.d/powersave.conf
+
+Enable `power_save=1` for `snd_hda_intel`
+
+### sysctl.d/powersave.conf
+
+- disable NMI watchdog
+- set laptop mode
+- increase the dirty writeback time
 
 ### bulkw
 

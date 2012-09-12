@@ -1,7 +1,7 @@
 # Maintainer: Simon Gomizelj <simongmzlj@gmail.com>
 
 pkgname=vodik-powersave-git
-pkgver=20120911
+pkgver=20120912
 pkgrel=1
 pkgdesc="Vodik's powersaving settings"
 arch=('i686' 'x86_64')
