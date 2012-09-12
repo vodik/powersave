@@ -1,8 +1,10 @@
+#define _GNU_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <errno.h>
 #include <err.h>
 #include <glob.h>
 
@@ -21,6 +23,13 @@ static void write_to(const char *msg, const char *path)
     close(fd);
 }
 
+static void __attribute__((__noreturn__)) usage(FILE *out)
+{
+    fprintf(out, "usage: %s [data] [files ...]\n", program_invocation_short_name);
+
+    exit(out == stderr ? EXIT_FAILURE : EXIT_SUCCESS);
+}
+
 int main(int argc, char *argv[])
 {
     glob_t gl;
@@ -28,7 +37,7 @@ int main(int argc, char *argv[])
     size_t i;
 
     if (argc < 3)
-        errx(EXIT_FAILURE, "not enough arguments");
+        usage(stderr);
 
     if (glob(argv[2], 0, NULL, &gl) != 0)
         errx(EXIT_FAILURE, "failed to glob %s\n", argv[2]);
