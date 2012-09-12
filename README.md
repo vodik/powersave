@@ -17,5 +17,9 @@ iw dev wlan0 set power_save off
 
 ### bulkw
 
+```
+usage: bulkw [data] [files ...]
+```
+
 `bulkw` is a bulk writing utility. It writes arbitrary data to every
-file matches via globbing.
+file matched via glob.
