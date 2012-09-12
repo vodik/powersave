@@ -8,12 +8,12 @@
 #include <err.h>
 #include <glob.h>
 
-static void write_to(const char *msg, const char *path)
+static int write_to(const char *msg, const char *path)
 {
     int fd = open(path, O_WRONLY);
     if (fd < 0) {
         warn("failed to open %s", path);
-        return;
+        return 1;
     }
 
     size_t len = strlen(msg);
@@ -21,6 +21,7 @@ static void write_to(const char *msg, const char *path)
         err(EXIT_FAILURE, "failed to write contents to %s", path);
 
     close(fd);
+    return 0;
 }
 
 static void __attribute__((__noreturn__)) usage(FILE *out)
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
 {
     glob_t gl;
     const char *msg = argv[1];
+    int rc = 0;
     size_t i;
 
     if (argc < 3)
@@ -48,10 +50,10 @@ int main(int argc, char *argv[])
     }
 
     for (i = 0; i < gl.gl_pathc; ++i)
-        write_to(msg, gl.gl_pathv[i]);
+        rc |= write_to(msg, gl.gl_pathv[i]);
 
     globfree(&gl);
-    return 0;
+    return rc;
 }
 
 // vim: et:sts=4:sw=4:cino=(0
