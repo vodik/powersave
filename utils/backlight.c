@@ -10,12 +10,12 @@
 #include <glob.h>
 
 #define CLAMP(x, low, high) \
-	__extension__ ({ \
-		typeof(x) _x = (x); \
-		typeof(low) _low = (low); \
-		typeof(high) _high = (high); \
-		((_x > _high) ? _high : ((_x < _low) ? _low : _x)); \
-	})
+    __extension__ ({ \
+        typeof(x) _x = (x); \
+        typeof(low) _low = (low); \
+        typeof(high) _high = (high); \
+        ((_x > _high) ? _high : ((_x < _low) ? _low : _x)); \
+    })
 
 typedef char filepath_t[PATH_MAX];
 
@@ -29,7 +29,7 @@ static int get(filepath_t path, long *value)
     int fd = open(path, O_RDONLY);
     if (fd < 0) {
         warn("failed to open %s", path);
-        return 1;
+        return -1;
     }
 
     char buf[1024], *end = NULL;
@@ -39,7 +39,7 @@ static int get(filepath_t path, long *value)
     *value = strtol(buf, &end, 10);
     if (errno || buf == end) {
         warn("not a number: %s", buf);
-        return 1;
+        return -1;
     }
 
     close(fd);
@@ -51,7 +51,7 @@ static int set(const char *path, long value)
     int fd = open(path, O_WRONLY);
     if (fd < 0) {
         warn("failed to open %s", path);
-        return 1;
+        return -1;
     }
 
     char buf[1024];
@@ -66,10 +66,13 @@ static int set(const char *path, long value)
 static int get_backlight_info(struct backlight_t *b, int id)
 {
     filepath_t path;
-    snprintf(b->dev, PATH_MAX, "/sys/class/backlight/acpi_video%d/brightness", id);
 
     snprintf(path, PATH_MAX, "/sys/class/backlight/acpi_video%d/max_brightness", id);
-    return get(path, &b->max);
+    if (get(path, &b->max) < 0)
+        return -1;
+
+    snprintf(b->dev, PATH_MAX, "/sys/class/backlight/acpi_video%d/brightness", id);
+    return 0;
 }
 
 static void __attribute__((__noreturn__)) usage(FILE *out)
