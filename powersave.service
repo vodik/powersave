@@ -8,7 +8,7 @@ ExecStart=/usr/bin/bulkw 1 /sys/bus/usb/devices/*/power/autosuspend
 ExecStart=/usr/bin/bulkw auto /sys/bus/usb/devices/*/power/level
 ExecStart=/usr/bin/bulkw min_power /sys/class/scsi_host/host0/link_power_management_policy
 ExecStart=/usr/sbin/ethtool -s eth0 wol d
-ExecStart=/usr/sbin/iw dev wlan0 set power_save off
+ExecStart=/usr/sbin/iw dev wlan0 set power_save on
 
 [Install]
 WantedBy=multi-user.target

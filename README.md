@@ -20,7 +20,7 @@ bulkw auto      /sys/bus/usb/devices/*/power/level
 bulkw min_power /sys/class/scsi_host/host0/link_power_management_policy
 
 ethtool -s eth0 wol d
-iw dev wlan0 set power_save off
+iw dev wlan0 set power_save on
 ```
 
 ### modprobe.d/powersave.conf
