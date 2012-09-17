@@ -7,7 +7,7 @@ pkgdesc="Vodik's powersaving settings"
 arch=('i686' 'x86_64')
 url="http://github.com/vodik/powersave"
 license=('GPL')
-depends=('systemd')
+depends=('systemd' 'dimmer-git')
 makedepends=('git')
 
 _gitroot="$PWD"
