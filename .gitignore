@@ -1,5 +1,6 @@
 pkg/
 src/
+utils/backlight
 utils/bulkw
 *.o
 *.pkg.tar.xz

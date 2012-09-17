@@ -39,3 +39,12 @@ usage: bulkw [data] [files ...]
 
 `bulkw` is a bulk writing utility. It writes arbitrary data to every
 file matched via glob.
+
+### backlight
+
+```
+usage: backlight [value]
+```
+
+`backlight` is a small utility to set control the backlight with.
+Expects a value or "max".
