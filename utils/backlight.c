@@ -46,7 +46,7 @@ static int get(filepath_t path, long *value)
     return 0;
 }
 
-static int set(const char *path, long value)
+static int set(filepath_t path, long value)
 {
     int fd = open(path, O_WRONLY);
     if (fd < 0) {
