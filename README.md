@@ -40,7 +40,8 @@ Depending if we're on AC or battery power:
 usage: backlight [value]
 ```
 
-`backlight` is a simple utility to control the backlight.
+`backlight` is a simple utility to control the backlight. It is suid so
+any user can set it.
 
 ### bulkw
 

@@ -8,7 +8,7 @@ backlight: backlight.o
 
 install: all
 	install -Dm755 bulkw ${DESTDIR}/usr/bin/bulkw
-	install -Dm755 backlight ${DESTDIR}/usr/bin/backlight
+	install -Dm5755 backlight ${DESTDIR}/usr/bin/backlight
 
 clean:
 	${RM} bulkw backlight *.o
