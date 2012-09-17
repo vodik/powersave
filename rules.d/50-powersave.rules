@@ -1,1 +1,4 @@
+# /etc/udev/rules.d/50-powersave.rules - powersaving rules
+# vim: ft=udevrules
+
 SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="1", RUN+="/usr/bin/bulkw 15 /sys/class/backlight/acpi_video*/brightness"
