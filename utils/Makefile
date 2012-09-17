@@ -1,16 +1,17 @@
-CFLAGS := -std=c99 \
+CFLAGS := -std=gnu99 \
 	-Wall -Wextra -pedantic \
 	${CFLAGS}
 
-all: bulkw
+all: bulkw backlight
 bulkw: bulkw.o
+backlight: backlight.o
 
-install: bulkw
+install: all
 	install -Dm755 envoy ${DESTDIR}/usr/bin/envoy
 	install -Dm644 envoy@.service ${DESTDIR}/usr/lib/systemd/system/envoy@.service
 	install -Dm644 envoy@.socket ${DESTDIR}/usr/lib/systemd/system/envoy@.socket
 
 clean:
-	${RM} bulkw *.o
+	${RM} bulkw backlight *.o
 
-.PHONY: clean install uninstall
+.PHONY: clean install
