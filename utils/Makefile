@@ -5,7 +5,7 @@ CFLAGS := -std=c99 \
 all: bulkw
 bulkw: bulkw.o
 
-install: bunk
+install: bulkw
 	install -Dm755 envoy ${DESTDIR}/usr/bin/envoy
 	install -Dm644 envoy@.service ${DESTDIR}/usr/lib/systemd/system/envoy@.service
 	install -Dm644 envoy@.socket ${DESTDIR}/usr/lib/systemd/system/envoy@.socket
