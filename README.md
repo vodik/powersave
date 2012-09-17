@@ -29,8 +29,18 @@ Enable `power_save=1` for `snd_hda_intel`
 
 ### rules.d/50-powersave.rules
 
-Start or stop [dimmer.service][dimmer] depending if we're running on
-battery power or not.
+Depending if we're on AC or battery power:
+
+- sets backlight to 4 or max
+- start or stop [dimmer.service][dimmer]
+
+### backlight
+
+```
+usage: backlight [value]
+```
+
+`backlight` is a simple utility to control the backlight.
 
 ### bulkw
 
