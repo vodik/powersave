@@ -1,7 +1,13 @@
 ## powersave
 
-A systemd service file and utilizes to set certain powersaving features
-on boot (screw consuming more power just because I'm on AC).
+My configuration for maximizing the battery life on my Thinkpad T430.
+
+Included here is a systemd service file, various config-lets and a few
+utilities to set or control certain power saving features. I set as much
+as I can statically on boot; I think its silly to increase power
+consumption simply because I'm on AC power.
+
+A `PKGBUILD` is included as a convenience.
 
 ### powersave.service
 
@@ -29,10 +35,10 @@ Enable `power_save=1` for `snd_hda_intel`
 
 ### rules.d/50-powersave.rules
 
-Depending if we're on AC or battery power:
+Depending if we are on AC or battery power:
 
-- sets backlight to 4 or max
-- start or stop [dimmer.service][dimmer]
+- sets the backlight to either `4` or `max`
+- start or stop the [dimmer.service][dimmer]
 
 ### backlight
 
@@ -41,7 +47,7 @@ usage: backlight [value]
 ```
 
 `backlight` is a simple utility to control the backlight. It is suid so
-any user can set it.
+any normal user can control the brightness.
 
 ### bulkw
 
