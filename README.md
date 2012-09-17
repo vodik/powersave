@@ -29,7 +29,8 @@ Enable `power_save=1` for `snd_hda_intel`
 
 ### rules.d/50-powersave.rules
 
-Set backlight automatically to 15 (max brightness) when on AC power.
+Start or stop [dimmer.service][dimmer] depending if we're running on
+battery power or not.
 
 ### bulkw
 
@@ -40,11 +41,4 @@ usage: bulkw [data] [files ...]
 `bulkw` is a bulk writing utility. It writes arbitrary data to every
 file matched via glob.
 
-### backlight
-
-```
-usage: backlight [value]
-```
-
-`backlight` is a small utility to set control the backlight with.
-Expects a value or "max".
+  [dimmer]: https://github.com/vodik/dimmer
