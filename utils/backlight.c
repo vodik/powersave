@@ -91,7 +91,8 @@ int main(int argc, char *argv[])
     if (argc != 2)
         usage(stderr);
 
-    get_backlight_info(&b, 0);
+    if (get_backlight_info(&b, 0) < 0)
+        errx(EXIT_FAILURE, "couldn't get backlight information");
 
     if (strcmp("max", arg) == 0)
         value = b.max;
