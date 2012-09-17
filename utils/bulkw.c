@@ -8,7 +8,7 @@
 #include <err.h>
 #include <glob.h>
 
-static int write_to(const char *msg, const char *path)
+static int set(const char *path, const char *msg)
 {
     int fd = open(path, O_WRONLY);
     if (fd < 0) {
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     }
 
     for (i = 0; i < gl.gl_pathc; ++i)
-        rc |= write_to(msg, gl.gl_pathv[i]);
+        rc |= set(gl.gl_pathv[i], msg);
 
     globfree(&gl);
     return rc;
