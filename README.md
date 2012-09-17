@@ -27,6 +27,10 @@ Enable `power_save=1` for `snd_hda_intel`
 - set laptop mode
 - increase the dirty writeback time
 
+### rules.d/50-powersave.rules
+
+Set backlight automatically to 15 (max brightness) when on AC power.
+
 ### bulkw
 
 ```
