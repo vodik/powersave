@@ -1,6 +1,6 @@
 ## powersave
 
-My configuration for maximizing the battery life on my Thinkpad T430.
+My configuration for maximizing the battery life on my Thinkpad T530.
 
 Included here is a systemd service file, various config-lets and a few
 utilities to set or control certain power saving features. I set as much
