@@ -63,15 +63,15 @@ static int set(filepath_t path, long value)
     return 0;
 }
 
-static int get_backlight_info(struct backlight_t *b, int id)
+static int get_backlight_info(struct backlight_t *b, const char *id)
 {
     filepath_t path;
 
-    snprintf(path, PATH_MAX, "/sys/class/backlight/acpi_video%d/max_brightness", id);
+    snprintf(path, PATH_MAX, "/sys/class/backlight/%s/max_brightness", id);
     if (get(path, &b->max) < 0)
         return -1;
 
-    snprintf(b->dev, PATH_MAX, "/sys/class/backlight/acpi_video%d/brightness", id);
+    snprintf(b->dev, PATH_MAX, "/sys/class/backlight/%s/brightness", id);
     return 0;
 }
 
@@ -91,19 +91,17 @@ int main(int argc, char *argv[])
     if (argc != 2)
         usage(stderr);
 
-    if (get_backlight_info(&b, 0) < 0)
+    if (get_backlight_info(&b, "intel_backlight") < 0)
         errx(EXIT_FAILURE, "couldn't get backlight information");
 
     if (strcmp("max", arg) == 0)
-        value = b.max;
-    else {
-        char *end = NULL;
-        value = strtol(arg, &end, 10);
-        if (errno || arg == end)
-            errx(EXIT_FAILURE, "invalid setting: %s", arg);
-    }
+        return set(b.dev, b.max);
 
-    return set(b.dev, CLAMP(value, 0, b.max));
+    char *end = NULL;
+    value = strtol(arg, &end, 10);
+    if (errno || arg == end)
+        errx(EXIT_FAILURE, "invalid setting: %s", arg);
+    return set(b.dev, CLAMP(value, 0, 100) / 100.0f * b.max);
 }
 
 // vim: et:sts=4:sw=4:cino=(0
