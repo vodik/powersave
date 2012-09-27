@@ -37,7 +37,7 @@ Enable `power_save=1` for `snd_hda_intel`
 
 Depending if we are on AC or battery power:
 
-- sets the backlight to either `4` or `max`
+- sets the backlight to either 5% or max
 - start or stop the [dimmer.service][dimmer]
 
 ### backlight
