@@ -11,14 +11,9 @@ A `PKGBUILD` is included as a convenience.
 
 ### powersave.service
 
-Basically the following script:
+Set the powersaving features that must be enabled by 3rd-party commands:
 
 ```
-bulkw auto      /sys/bus/pci/devices/*/power/control
-bulkw 1         /sys/bus/usb/devices/*/power/autosuspend
-bulkw auto      /sys/bus/usb/devices/*/power/level
-bulkw min_power /sys/class/scsi_host/host0/link_power_management_policy
-
 ethtool -s eth0 wol d
 iw dev wlan0 set power_save on
 ```
@@ -32,6 +27,17 @@ Enable `power_save=1` for `snd_hda_intel`
 - disable NMI watchdog
 - set laptop mode
 - increase the dirty writeback time
+
+### tmpfiles.d/powersave.conf
+
+Enable pci, usb, and sata powersaving features:
+
+```
+w /sys/bus/pci/devices/*/power/control - - - - auto
+w /sys/bus/usb/devices/*/power/autosuspend - - - - 1
+w /sys/bus/usb/devices/*/power/level - - - - auto
+w /sys/class/scsi_host/host0/link_power_management_policy - - - - min_power
+```
 
 ### rules.d/50-powersave.rules
 
@@ -48,14 +54,5 @@ usage: backlight [value]
 
 `backlight` is a simple utility to control the backlight. It is suid so
 any normal user can control the brightness.
-
-### bulkw
-
-```
-usage: bulkw [data] [files ...]
-```
-
-`bulkw` is a bulk writing utility. It writes arbitrary data to every
-file matched via glob.
 
   [dimmer]: https://github.com/vodik/dimmer
