@@ -36,7 +36,7 @@ Enable pci, usb, and sata powersaving features:
 w /sys/bus/pci/devices/*/power/control - - - - auto
 w /sys/bus/usb/devices/*/power/autosuspend - - - - 1
 w /sys/bus/usb/devices/*/power/level - - - - auto
-w /sys/class/scsi_host/host0/link_power_management_policy - - - - min_power
+w /sys/class/scsi_host/host*/link_power_management_policy - - - - min_power
 ```
 
 ### rules.d/50-powersave.rules
