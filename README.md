@@ -5,7 +5,8 @@ My configuration for maximizing the battery life on my Thinkpad T530.
 Included here is a systemd service file, various config-lets and a few
 utilities to set or control certain power saving features. I set as much
 as I can statically on boot; I think its silly to increase power
-consumption simply because I'm on AC power.
+consumption simply because I'm on AC power. This is integrated with my
+[backlight utilizes][backlight].
 
 A `PKGBUILD` is included as a convenience.
 
@@ -44,15 +45,6 @@ w /sys/class/scsi_host/host*/link_power_management_policy - - - - min_power
 Depending if we are on AC or battery power:
 
 - sets the backlight to either 5% or max
-- start or stop the [dimmer.service][dimmer]
+- start or stop the [dimmer.service][backlight]
 
-### backlight
-
-```
-usage: backlight [value]
-```
-
-`backlight` is a simple utility to control the backlight. It is suid so
-any normal user can control the brightness.
-
-  [dimmer]: https://github.com/vodik/dimmer
+  [backlight]: https://github.com/vodik/backlight-utils
