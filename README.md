@@ -6,7 +6,7 @@ Included here is a systemd service file, various config-lets and a few
 utilities to set or control certain power saving features. I set as much
 as I can statically on boot; I think its silly to increase power
 consumption simply because I'm on AC power. This is integrated with my
-[backlight utilizes][backlight].
+[backlight utilities][backlight].
 
 A `PKGBUILD` is included as a convenience.
 
