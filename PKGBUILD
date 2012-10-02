@@ -1,7 +1,7 @@
 # Maintainer: Simon Gomizelj <simongmzlj@gmail.com>
 
 pkgname=vodik-powersave-git
-pkgver=20120930
+pkgver=20121002
 pkgrel=1
 pkgdesc="Vodik's powersaving settings"
 arch=('i686' 'x86_64')
@@ -29,12 +29,15 @@ build() {
   rm -rf "$srcdir/$_gitname-build"
   cp -r "$srcdir/$_gitname" "$srcdir/$_gitname-build"
   cd "$srcdir/$_gitname-build"
-
-  make
 }
 
 package() {
-  make -C "$_gitname-build" DESTDIR="$pkgdir" install
+  cd "$srcdir/$_gitname-build"
+  install -Dm644 powersave.service $pkgdir/usr/lib/systemd/system/powersave.service
+  install -Dm644 sysctl.d/powersave.conf $pkgdir/etc/sysctl.d/powersave.conf
+  install -Dm644 modprobe.d/powersave.conf $pkgdir/etc/modprobe.d/powersave.conf
+  install -Dm644 tmpfiles.d/powersave.conf $pkgdir/etc/tmpfiles.d/powersave.conf
+  install -Dm644 rules.d/50-powersave.rules $pkgdir/etc/udev/rules.d/50-powersave.rules
 }
 
 # vim: ft=sh syn=sh et
