@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="eth0" RUN+="/usr/sbin/ethtool -s wol d"
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlan0" RUN+="/usr/sbin/iwconfig wlan0 power on"
