@@ -38,6 +38,8 @@ package() {
   install -Dm644 tmpfiles.d/powersave.conf $pkgdir/etc/tmpfiles.d/powersave.conf
   install -Dm644 rules.d/50-backlight-powersave.rules $pkgdir/etc/udev/rules.d/50-backlight-powersave.rules
   install -Dm644 rules.d/50-network-powersave.rules $pkgdir/etc/udev/rules.d/50-network-powersave.rules
+  install -Dm644 rules.d/50-pci-powersave.rules $pkgdir/etc/udev/rules.d/50-pci-powersave.rules
+  install -Dm644 rules.d/50-usb-powersave.rules $pkgdir/etc/udev/rules.d/50-usb-powersave.rules
 }
 
 # vim: ft=sh syn=sh et
