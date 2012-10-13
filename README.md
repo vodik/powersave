@@ -25,9 +25,6 @@ Enable `power_save=1` for `snd_hda_intel`
 Enable pci, usb, and sata powersaving features:
 
 ```
-w /sys/bus/pci/devices/*/power/control - - - - auto
-w /sys/bus/usb/devices/*/power/autosuspend - - - - 1
-w /sys/bus/usb/devices/*/power/level - - - - auto
 w /sys/class/scsi_host/host*/link_power_management_policy - - - - min_power
 ```
 
@@ -49,4 +46,21 @@ Set the powersaving features on network devices that must be enabled by
 ```
 ethtool -s eth0 wol d
 iw dev wlan0 set power_save on
+```
+
+### rules.d/50-pci-powersave.rules
+
+Enable pci powersaving:
+
+```
+ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto
+```
+
+### rules.d/50-usb-powersave.rules
+
+Enable powersaving and autosupend on usb
+
+```
+ACTION=="add", SUBSYSTEM=="usb", ATTR{power/autosuspend}="1"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{power/level}="auto"
 ```
