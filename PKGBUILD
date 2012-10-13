@@ -33,7 +33,6 @@ build() {
 
 package() {
   cd "$srcdir/$_gitname-build"
-  install -Dm644 powersave.service $pkgdir/usr/lib/systemd/system/powersave.service
   install -Dm644 sysctl.d/powersave.conf $pkgdir/etc/sysctl.d/powersave.conf
   install -Dm644 modprobe.d/powersave.conf $pkgdir/etc/modprobe.d/powersave.conf
   install -Dm644 tmpfiles.d/powersave.conf $pkgdir/etc/tmpfiles.d/powersave.conf

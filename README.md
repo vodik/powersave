@@ -31,9 +31,9 @@ w /sys/bus/usb/devices/*/power/level - - - - auto
 w /sys/class/scsi_host/host*/link_power_management_policy - - - - min_power
 ```
 
-### rules.d/50-brightness-powersave.rules
+### rules.d/50-backlight-powersave.rules
 
-Depending if we are on AC or battery power:
+Rules for the backlight. Depending if we are on AC or battery power:
 
 - sets the backlight to either 5% or max
 - start or stop the [dimmer.service][backlight]
@@ -41,9 +41,10 @@ Depending if we are on AC or battery power:
   [backlight]: https://github.com/vodik/backlight-utils
 
 
-### rules.d/50-internet-powersave.rules
+### rules.d/50-network-powersave.rules
 
-Set the powersaving features that must be enabled by 3rd-party commands:
+Set the powersaving features on network devices that must be enabled by
+3rd-party commands:
 
 ```
 ethtool -s eth0 wol d
