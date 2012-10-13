@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="eth0" RUN+="/usr/sbin/ethtool -s eth0 wol d"
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlan0" RUN+="/usr/sbin/iw dev wlan0 set power_save on"

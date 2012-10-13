@@ -10,15 +10,6 @@ consumption simply because I'm on AC power. This is integrated with my
 
 A `PKGBUILD` is included as a convenience.
 
-### powersave.service
-
-Set the powersaving features that must be enabled by 3rd-party commands:
-
-```
-ethtool -s eth0 wol d
-iw dev wlan0 set power_save on
-```
-
 ### modprobe.d/powersave.conf
 
 Enable `power_save=1` for `snd_hda_intel`
@@ -40,7 +31,7 @@ w /sys/bus/usb/devices/*/power/level - - - - auto
 w /sys/class/scsi_host/host*/link_power_management_policy - - - - min_power
 ```
 
-### rules.d/50-powersave.rules
+### rules.d/50-brightness-powersave.rules
 
 Depending if we are on AC or battery power:
 
@@ -48,3 +39,13 @@ Depending if we are on AC or battery power:
 - start or stop the [dimmer.service][backlight]
 
   [backlight]: https://github.com/vodik/backlight-utils
+
+
+### rules.d/50-internet-powersave.rules
+
+Set the powersaving features that must be enabled by 3rd-party commands:
+
+```
+ethtool -s eth0 wol d
+iw dev wlan0 set power_save on
+```
