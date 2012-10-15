@@ -1,4 +1,4 @@
-# /etc/udev/rules.d/50-powersave.rules - powersaving rules
+# /etc/udev/rules.d/50-backlight-powersave.rules
 # vim: ft=udevrules
 
 SUBSYSTEM=="power_supply", ENV{POWER_SUPPLY_ONLINE}=="0", RUN+="/usr/bin/bset 5"
