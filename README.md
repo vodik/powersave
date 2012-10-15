@@ -25,7 +25,7 @@ Enable `power_save=1` for `snd_hda_intel`
 Enable pci, usb, and sata powersaving features:
 
 ```
-w /sys/class/scsi_host/host*/link_power_management_policy - - - - min_power
+w /sys/class/scsi_host/host?/link_power_management_policy - - - - min_power
 ```
 
 ### rules.d/50-backlight-powersave.rules
@@ -50,15 +50,15 @@ iw dev wlan0 set power_save on
 
 ### rules.d/50-pci-powersave.rules
 
-Enable pci powersaving:
+Enable pci powersaving features:
 
 ```
-ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto
+ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
 ```
 
 ### rules.d/50-usb-powersave.rules
 
-Enable powersaving and autosupend on usb
+Enable powersaving and autosuspend on usb ports:
 
 ```
 ACTION=="add", SUBSYSTEM=="usb", ATTR{power/autosuspend}="1"
