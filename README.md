@@ -22,7 +22,8 @@ Enable `power_save=1` for `snd_hda_intel`
 
 ### tmpfiles.d/powersave.conf
 
-Enable pci, usb, and sata powersaving features:
+Enable sata powersaving features. Ideally should be a udev rules but
+I don't know if its exposed.
 
 ```
 w /sys/class/scsi_host/host?/link_power_management_policy - - - - min_power
@@ -41,11 +42,11 @@ Rules for the backlight. Depending if we are on AC or battery power:
 ### rules.d/50-network-powersave.rules
 
 Set the powersaving features on network devices that must be enabled by
-3rd-party commands:
+3rd-party commands. For every detected device:
 
 ```
-ethtool -s eth0 wol d
-iw dev wlan0 set power_save on
+ethtool -s eth* wol d
+iw dev wlan* set power_save on
 ```
 
 ### rules.d/50-pci-powersave.rules
