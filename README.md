@@ -45,9 +45,12 @@ Set the powersaving features on network devices that must be enabled by
 3rd-party commands. For every detected device:
 
 ```
-ethtool -s eth* wol d
-iw dev wlan* set power_save on
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="eth*" RUN+="/usr/sbin/ethtool -s %k wol d"
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlan*" RUN+="/usr/sbin/iw dev %k set power_save on"
 ```
+
+**NOTE**: this assumes modern Linux wireless drivers. There's no guarantee
+about naming of devices.
 
 ### rules.d/50-pci-powersave.rules
 
