@@ -65,6 +65,6 @@ ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
 Enable powersaving and autosuspend on usb ports:
 
 ```
-ACTION=="add", SUBSYSTEM=="usb", ATTR{power/autosuspend}="1"
-ACTION=="add", SUBSYSTEM=="usb", ATTR{power/level}="auto"
+ACTION=="add", SUBSYSTEM=="usb", TEST=="power/autosuspend" ATTR{power/autosuspend}="1"
+ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control" ATTR{power/control}="auto"
 ```
