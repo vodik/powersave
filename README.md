@@ -20,15 +20,6 @@ Enable `power_save=1` for `snd_hda_intel`
 - set laptop mode
 - increase the dirty writeback time
 
-### tmpfiles.d/powersave.conf
-
-Enable sata powersaving features. Ideally should be a udev rules but
-I don't know if its exposed.
-
-```
-w /sys/class/scsi_host/host?/link_power_management_policy - - - - min_power
-```
-
 ### rules.d/50-backlight-powersave.rules
 
 Rules for the backlight. Depending if we are on AC or battery power:
@@ -37,7 +28,6 @@ Rules for the backlight. Depending if we are on AC or battery power:
 - start or stop the [dimmer.service][backlight]
 
   [backlight]: https://github.com/vodik/backlight-utils
-
 
 ### rules.d/50-network-powersave.rules
 
@@ -58,6 +48,14 @@ Enable pci powersaving features:
 
 ```
 ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
+```
+
+### rules.d/50-sata-powersave.rules
+
+Enable sata powersaving features:
+
+```
+ACTION=="add", SUBSYSTEM=="scsi_host", ATTR{link_power_management_policy}="min_power"
 ```
 
 ### rules.d/50-usb-powersave.rules
