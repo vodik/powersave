@@ -5,8 +5,10 @@ My configuration for maximizing the battery life on my Thinkpad T530.
 Included here is a systemd service file, various config-lets and a few
 utilities to set or control certain power saving features. I set as much
 as I can statically on boot; I think its silly to increase power
-consumption simply because I'm on AC power. This is integrated with my
-[backlight utilities][backlight].
+consumption simply because I'm on AC power.
+
+Also look at my [backlight utilities][backlight]. The `lightd` daemon
+is useful to automatically manage/dim the backlight.
 
 A `PKGBUILD` is included as a convenience.
 
@@ -19,15 +21,6 @@ Enable `power_save=1` for `snd_hda_intel`
 - disable NMI watchdog
 - set laptop mode
 - increase the dirty writeback time
-
-### rules.d/50-backlight-powersave.rules
-
-Rules for the backlight. Depending if we are on AC or battery power:
-
-- sets the backlight to either 5% or max
-- start or stop the [dimmer.service][backlight]
-
-  [backlight]: https://github.com/vodik/backlight-utils
 
 ### rules.d/50-network-powersave.rules
 

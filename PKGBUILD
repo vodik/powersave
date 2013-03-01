@@ -7,7 +7,7 @@ pkgdesc="Vodik's powersaving settings"
 arch=('any')
 url="http://github.com/vodik/powersave"
 license=('GPL')
-depends=('systemd' 'backlight-utils-git')
+depends=('systemd')
 makedepends=('git')
 
 _gitroot="$PWD"
@@ -35,7 +35,6 @@ package() {
   cd "$srcdir/$_gitname-build"
   install -Dm644 sysctl.d/powersave.conf "$pkgdir/usr/lib/sysctl.d/powersave.conf"
   install -Dm644 modprobe.d/powersave.conf "$pkgdir/usr/lib/modprobe.d/powersave.conf"
-  install -Dm644 rules.d/50-backlight-powersave.rules "$pkgdir/usr/lib/udev/rules.d/50-backlight-powersave.rules"
   install -Dm644 rules.d/50-network-powersave.rules "$pkgdir/usr/lib/udev/rules.d/50-network-powersave.rules"
   install -Dm644 rules.d/50-sata-powersave.rules "$pkgdir/usr/lib/udev/rules.d/50-sata-powersave.rules"
   install -Dm644 rules.d/50-pci-powersave.rules "$pkgdir/usr/lib/udev/rules.d/50-pci-powersave.rules"
