@@ -12,6 +12,8 @@ is useful to automatically manage/dim the backlight.
 
 A `PKGBUILD` is included as a convenience.
 
+  [backlight]: https://github.com/vodik/lightd
+
 ### modprobe.d/powersave.conf
 
 Enable `power_save=1` for `snd_hda_intel`
