@@ -1,3 +1,4 @@
 pkg/
 src/
+powersave/
 *.pkg.tar.xz

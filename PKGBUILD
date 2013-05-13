@@ -1,38 +1,24 @@
 # Maintainer: Simon Gomizelj <simongmzlj@gmail.com>
 
 pkgname=vodik-powersave-git
-pkgver=20121013
+pkgver=1
+pkgver() {
+  cd "powersave"
+  git describe | sed 's/^v//;s/-/./g'
+}
 pkgrel=1
 pkgdesc="Vodik's powersaving settings"
+
 arch=('any')
 url="http://github.com/vodik/powersave"
 license=('GPL')
 depends=('systemd')
 makedepends=('git')
-
-_gitroot="$PWD"
-_gitname="powersave"
-
-build() {
-  msg "Connecting to GIT server...."
-
-  if [[ -d $_gitname ]] ; then
-    cd "$_gitname" && git pull origin
-    msg "The local files are updated."
-  else
-    git clone "$_gitroot" "$_gitname"
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting make..."
-
-  rm -rf "$srcdir/$_gitname-build"
-  cp -r "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-  cd "$srcdir/$_gitname-build"
-}
+source=("git+file://$PWD")
+sha1sums=('SKIP')
 
 package() {
-  cd "$srcdir/$_gitname-build"
+  cd "powersave"
   install -Dm644 sysctl.d/powersave.conf "$pkgdir/usr/lib/sysctl.d/powersave.conf"
   install -Dm644 modprobe.d/powersave.conf "$pkgdir/usr/lib/modprobe.d/powersave.conf"
   install -Dm644 rules.d/50-network-powersave.rules "$pkgdir/usr/lib/udev/rules.d/50-network-powersave.rules"
